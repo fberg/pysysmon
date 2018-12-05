@@ -1,0 +1,21 @@
+# PySysMon
+
+This is a simple Linux system monitoring tool written in Python, and intended to be used in status bars of setups without full desktop enviroments.
+I initially wrote this for use with `xmonad` and `dzen`, and the style of configuration is inspired by XMonad, in the sense that the config file is just a Python program that (among other things) instantiates a `pysysmon.PySysMon` object, which makes configuration very flexible.
+
+PySysMon was written around 2009 to 2010, in Python 2.x.
+I have started porting it to Python 3.x, and my config files as well as the provided examples seem to work fine, but there are probably still some bits of code that do not yet function with Python 3.
+
+There is preliminary support for `i3` workspace buttons and window titles in PySysMon.
+
+Since this was not originally intended to be made public, the code lacks in documentation, although that may change in the future.
+
+# Examples
+
+Configuration examples are found in the `/examples` directory.
+These are intended to be run directly (be sure to adjust `sys.path` at the start of the file though) or by putting (or symlinking) them to `~/.pysysmon/config.py` and running `pysysmon.py`.
+
+# Dependencies
+The `Network` monitor requires `ifconfig` and `iwconfig` (if WiFi information is needed).
+
+There are special classes that make life easier when using `dzen`, such as creating bars and histograms, see `dzen.py`. Obviously, this requires `dzen` to make sense.
