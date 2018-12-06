@@ -86,9 +86,14 @@ class PySysMon (KwArgsHandler):
             m._update_callback = self.update
 
         if self._pipe_command:
-            import shlex
+            cmd = self._pipe_command
+
+            if type(self._pipe_command) != list:
+                import shlex
+                cmd = shlex.split(cmd)
+
             self.__pipe = subprocess.Popen(
-                shlex.split(self._pipe_command),
+                cmd,
                 stdin = subprocess.PIPE,
                 bufsize = 0
                 # shell = True
