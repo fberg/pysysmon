@@ -8,12 +8,22 @@ I have started porting it to Python 3.x, and my config files as well as the prov
 
 Since this was not originally intended to be made public, the code lacks in documentation, although that may change in the future.
 
-# Examples
+## Examples
 
-Configuration examples are found in the `/examples` directory.
+Configuration examples are found in the [examples](https://github.com/fberg/pysysmon/tree/master/examples) directory.
 These are intended to be run directly (be sure to adjust `sys.path` at the start of the file though) or by putting (or symlinking) them to `~/.pysysmon/config.py` and running `pysysmon.py`.
 
-# Dependencies
+## Screenshots
+
+Some screenshots I found from a few years back:
+
+![](https://github.com/fberg/pysysmon/tree/master/screenshots/1.png)
+
+![](https://github.com/fberg/pysysmon/tree/master/screenshots/2.png)
+
+These are similar to what one gets with the [complex dzen config file](https://github.com/fberg/pysysmon/tree/master/examples/dzen_complex.py).
+
+## Dependencies
 The `Network` monitor requires `ifconfig` and `iwconfig` (if WiFi information is needed).
 
 There are special classes that make life easier when using `dzen`, such as creating bars and histograms, see `dzen.py`. Obviously, this requires `dzen` to make sense.
