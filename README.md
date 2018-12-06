@@ -17,9 +17,9 @@ These are intended to be run directly (be sure to adjust `sys.path` at the start
 
 Some screenshots I found from a few years back:
 
-![](https://github.com/fberg/pysysmon/tree/master/screenshots/1.png)
+![](https://raw.githubusercontent.com/fberg/pysysmon/master/screenshots/1.png)
 
-![](https://github.com/fberg/pysysmon/tree/master/screenshots/2.png)
+![](https://raw.githubusercontent.com/fberg/pysysmon/master/screenshots/2.png)
 
 These are similar to what one gets with the [complex dzen config file](https://github.com/fberg/pysysmon/tree/master/examples/dzen_complex.py).
 
