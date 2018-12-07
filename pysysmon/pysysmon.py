@@ -49,11 +49,9 @@ class PySysMon (KwArgsHandler):
         Runs all the monitors and packs the results in a list/dictionary.
         """
         if type(self._monitors) == dict:
-            return dict(
-                [(key, repr(mon)) for key, mon in self._monitors.items()]
-            )
+            return {key: repr(mon) for key, mon in self._monitors.items()}
         if type(self._monitors) == list:
-            return [repr(mon) for mon in self._monitors]
+            return list(map(repr, self._monitors))
 
     def __repr__(self):
         result = self.execute()
@@ -81,9 +79,12 @@ class PySysMon (KwArgsHandler):
         """
 
         # give a callback handler to every Monitor
-        mons = self._monitors if type(self._monitors) == list else self._monitors.values()
-        for m in mons:
-            m._update_callback = self.update
+        if type(self._monitors) == dict:
+            keys = self._monitors.keys()
+        if type(self._monitors) == list:
+            keys = range(len(self._monitors))
+        for k in keys:
+            self._monitors[k]._update_callback = self.update
 
         if self._pipe_command:
             cmd = self._pipe_command

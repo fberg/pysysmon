@@ -179,7 +179,7 @@ class Monitor (KwArgsHandler):
     from it automatically supports those features.
     """
     def __init__(self, **args):
-        self._interval = 5
+        self._interval = None
         self._alternative_text = 'N/A'
         self._update_callback = None
 
