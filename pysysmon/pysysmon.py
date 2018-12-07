@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import time
+from datetime import datetime
 import subprocess
 import sys
 import traceback
@@ -31,11 +32,14 @@ class PySysMon (KwArgsHandler):
         self._interval = 1
         self._run_once = False
         self._name = 'unnamed'
+        self._anti_flicker_time = 0.01
         self._layout = None
         self._separator = " "
         self._print_to_stdout = True
         self._monitors = None
         self._logdir = "~/.pysysmon/logs"
+
+        self.__last_update = None
 
         KwArgsHandler.__init__(self, **args)
         Util.setup_logging(logdir=self._logdir)
@@ -62,6 +66,15 @@ class PySysMon (KwArgsHandler):
             return self._separator.join(result)
 
     def update(self):
+        # prevent rapid updates from callbacks that might lead to flickering
+        # by waiting for a small amount of time and seeing if another update
+        # occured during that period
+        if self._anti_flicker_time:
+            ts = datetime.now()
+            self.__last_update = ts
+            time.sleep(self._anti_flicker_time)
+            if (self.__last_update != ts): return
+
         output = repr(self)
 
         if self._print_to_stdout:
